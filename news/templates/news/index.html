@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>Our Awesome News</title>
+  </head>
+  <body>
+    {% if posts %}
+      <ul>
+       {% for post in posts %}
+           <li><a href="{% url 'news:detail' post.pk %}">{{ post.title }}</a></li>
+       {% endfor %}
+      </ul>
+    {% else %}
+      <p>We don't have any!</p>
+    {% endif %}
+  </body>
+</html>
