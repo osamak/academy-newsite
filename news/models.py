@@ -16,6 +16,12 @@ class Post(models.Model):
         else:
             return True
 
+    def get_summary(self):
+        summary = self.body[:200]
+        if len(self.body) > 200:
+            summary += "..."
+        return summary
+
     def __unicode__(self):
         return self.title
 
