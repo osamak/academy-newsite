@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
-from news.models import Post
+from news.models import Post, Comment
+
 
 def index(request):
     posts = Post.objects.all().order_by("-pub_date")
-    context = {'posts': posts}
+    comments = Comment.objects.all().order_by("-pub_date")[:5]
+    context = {'posts': posts, 'comments': comments}
     return render(request, "news/index_bootstrap.html", context)
+
 
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
